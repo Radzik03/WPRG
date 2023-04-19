@@ -1,17 +1,22 @@
 <?php
-// Napisz funkcję liczącą średnicę koła (w parametrze podajemy promień).
 
-
-
-function diameter($r){
+function srednica($r){
+    
     if ($r<=0){
-        return "Value must be greater than 0";
+
+        return "Wartosci musza byc wieksze od zera";
     }
-    echo "Circle area for the radius ".$r." is: ";
+
+    echo "Obszar okregu dla promienia ".$r." jest rowny ";
+
     return (2*$r);
 }
+echo srednica(5).'<br>';
 
-echo diameter(5).'<br>';
-echo diameter(-2).'<br>';
-echo diameter(10).'<br>';
-echo diameter(26).'<br>';
+echo srednica(-2).'<br>';
+
+echo srednica(10).'<br>';
+
+echo srednica(26).'<br>';
+
+//średnica koła (promień).
