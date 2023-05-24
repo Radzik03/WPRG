@@ -1,98 +1,47 @@
 <?php
+function PESEL($pesel){
 
-function pesel($id){
+    if (strlen($pesel) !== 11) {
+        return "Błędny PESEL".'<br>';
+    }
+    if (ctype_digit($pesel) === false) {
+        return "Błędny PESEL".'<br>';
+    }
 
+    $rok = substr($pesel, 0, 2);
+    $miesiac = substr($pesel, 2, 2);
+    $dzien = substr($pesel, 4, 2);
 
-    if (strlen($id)!=11){
-        return "niepoprawny numer";
-    }else
-
-        if ($id[2]>=2){
-
-            $yy = "20".$id[0].$id[1];
-
-        }else {
-
-            $yy = "19" . $id[0] . $id[1];
-        }
-
-    $dd = $id[4].$id[5];
-
-    $mm = (($id[2].$id[3]));
-
-    if ($mm>12) {
+    $wiek = substr($pesel, 2, 1);
+    $wiek += 2;
+    $wiek %= 10;
+    $wiek = round($wiek / 2, 0, PHP_ROUND_HALF_DOWN);
+    $wiek += 18;
+    $rok = $wiek.$rok;
+    $miesiac = str_pad($miesiac % 20, 2, '0', STR_PAD_LEFT);
 
 
-        $mm-=20;
+    if ($rok < 1800 || $rok > 2299) {
+        return "Błędny PESEL".'<br>';
+    }
+    if ($miesiac < 1 || $miesiac > 12) {
+        return "Błędny PESEL".'<br>';
+    }
+    if ($dzien < 1 || $dzien > cal_days_in_month(CAL_GREGORIAN, $miesiac, $rok)) {
+        return "Błędny PESEL".'<br>';
+    }
 
-        if ($mm == 1 || $mm == 3 || $mm == 5 || $mm == 7 || $mm == 8 || $mm == 10 || $mm == 12) {
-
-
-            if ($dd <= 31 && $dd >= 1) {
-                if ($mm<10) {
-                    return "Twoj dzien urodzenia to: " . $dd . '-0' . $mm . '-' . $yy . '<br>';
-                }else return "Twoj dzien urodzenia to: " . $dd . '-' . $mm . '-' . $yy . '<br>';
-            }else return "Podales nieprawidlowy numer<br>";
-
-
-        }else if ($mm==2){
-
-
-            if ($dd <= 28 && $dd >= 1) {
-                return "Twoj dzien urodzenia to: " . $dd . '-0' . $mm . '-' . $yy . '<br>';
-            }else return "Podales nieprawidlowy numer<br>";
-
-
-        }else if ($mm == 4 || $mm == 6 || $mm == 9 || $mm == 11){
-
-
-            if ($dd <= 30 && $dd >= 1) {
-                if ($mm<10) {
-                    return "Your birthday is: " . $dd . '-0' . $mm . '-' . $yy . '<br>';
-
-                }else return "Twoj dzien urodzenia to: " . $dd . '-' . $mm . '-' . $yy . '<br>';
-            }else return "Podales nieprawidlowy numer<br>";
-        }
-
-
-    }else if ($mm<=12){
-
-
-        if ($mm == 1 || $mm == 3 || $mm == 5 || $mm == 7 || $mm == 8 || $mm == 10 || $mm == 12) {
-
-
-            if ($dd <= 31 && $dd >= 1) {
-                if ($mm<10) {
-                    return "Twoj dzien urodzenia to: " . $dd . '-' . $mm . '-' . $yy . '<br>';
-
-                }else return "Twoj dzien urodzenia to: " . $dd . '-' . $mm . '-' . $yy . '<br>';
-            }else return "Podales nieprawidlowy numer<br>";
-
-
-        }else if ($mm==2){
-
-
-            if ($dd <= 28 && $dd >= 1) {
-                return "Twoj dzien urodzenia to: " . $dd . '-' . $mm . '-' . $yy . '<br>';
-            }else return "Podales nieprawidlowy numer<br>";
-
-
-        }else if ($mm == 4 || $mm == 6 || $mm == 9 || $mm == 11){
-
-
-            if ($dd <= 30 && $dd >= 1) {
-                if ($mm<10) {
-                    return "Twoj dzien urodzenia to: " . $dd . '-' . $mm . '-' . $yy . '<br>';
-                }else return "Twoj dzien urodzenia to: " . $dd . '-' . $mm . '-' . $yy . '<br>';
-            }else return "Podales nieprawidlowy numer<br>";
-        }
-
-
-    }else return "Podales nieprawidlowy numer<br>";
+    return " ". $dzien . '-' . $miesiac . '-' . $rok . '<br>';
 }
-echo pesel('03260763623');
-echo pesel('86050584943');
-echo pesel('783983489984');
-echo pesel('00291178388');
+echo PESEL('90121183982');
+echo PESEL('03250565748');
+echo PESEL('00281374848');
+echo PESEL('00081374848');
+echo PESEL('00881374848');
+echo PESEL('684374784888');
+echo PESEL('68101943473');
 
-// PESEL.
+
+
+
+

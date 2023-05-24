@@ -1,22 +1,28 @@
 <?php
-
 function srednica($r){
-    
+
     if ($r<=0){
-
-        return "Wartosci musza byc wieksze od zera";
+        return "niepoprawne dane";
     }
-
-    echo "Obszar okregu dla promienia ".$r." jest rowny ";
-
-    return (2*$r);
+    echo "Obszar koła dla promienia ".$r." jest równy "; return (2*$r);
 }
-echo srednica(5).'<br>';
+function pole($p){
 
-echo srednica(-2).'<br>';
+    if ($p<=0){
+        return "niepoprawne dane";
+    }
+    echo "I pole koła dla promienia ".$p. " jest równe "; return (3.14*$p*$p);
+}
+
+echo srednica(5).'<br>';
+echo pole(5).'<br>';
 
 echo srednica(10).'<br>';
+echo pole(10).'<br>';
+
+echo srednica(-2).'<br>';
+echo pole(-2).'<br>';
 
 echo srednica(26).'<br>';
+echo pole(26).'<br>';
 
-//średnica koła (promień).

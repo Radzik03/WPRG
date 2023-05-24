@@ -1,13 +1,8 @@
 <?php
-function rk()
-
+function kostka()
 {
     return rand(1, 6);
 }
-
-echo rk() . '<br>';
-echo rk() . '<br>';
-echo rk() . '<br>';
+echo kostka() . '<br>';
 
 
-//zwraca wynik rzutu kostką.
