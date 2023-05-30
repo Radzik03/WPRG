@@ -1,14 +1,14 @@
 <?php
-function cenzura($txt){
+function cenzura($tekst){
 
     $doCenzury = array('tego', 'nie', 'przeczytasz');
 
     foreach ($doCenzury as $slowo){
 
         $gwiazdki = str_repeat('*', strlen($slowo));
-        $txt = str_ireplace($slowo, $gwiazdki, $txt);
+        $tekst = str_ireplace($slowo, $gwiazdki, $tekst);
     }
 
-    return $txt;
+    return $tekst;
 }
 echo cenzura("Tomek gra w piłkę tego nie przeczytasz");

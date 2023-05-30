@@ -1,14 +1,17 @@
 <?php
 function srednica($r){
 
-    if ($r<=0){
+    if ($r<=0)
+    {
         return "niepoprawne dane";
     }
     echo "Obszar koła dla promienia ".$r." jest równy "; return (2*$r);
 }
+
 function pole($p){
 
-    if ($p<=0){
+    if ($p<=0)
+    {
         return "niepoprawne dane";
     }
     echo "I pole koła dla promienia ".$p. " jest równe "; return (3.14*$p*$p);
